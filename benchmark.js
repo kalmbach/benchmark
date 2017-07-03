@@ -1,7 +1,7 @@
 (function(){
   var _ = function() {};
 
-  _.meassure = function(task) {
+  _.measure = function(task) {
     if (typeof(task) === "function") {
       var t0 = performance.now();
       task();
@@ -10,13 +10,13 @@
       return (t1 - t0);
     }
 
-    console.log("Benchmark.meassure: passed task is not a function.");
+    console.log("Benchmark.measure: passed task is not a function.");
     return 0;
   }
 
   _.report = function(task, tag, time) {
     var name = tag || task.name;
-    time = time || _.meassure(task)
+    time = time || _.measure(task)
 
     console.log(name + " took " + time + " milliseconds");
     return time;
@@ -27,7 +27,7 @@
     var accumulator = [];
 
     for(var i = 0; i < rounds; i++) {
-      accumulator += _.meassure(task);
+      accumulator += _.measure(task);
     }
 
     var average = accumulator / rounds;
